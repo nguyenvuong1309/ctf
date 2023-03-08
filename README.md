@@ -8,12 +8,9 @@ Cách giải:
 
 - from string import *
 - with open("message.txt") as file:
-    content = file.read()
-
+-    content = file.read()
 - upper_key = "QWITJSYHXCNDFERMUKGOPVALBZ"
 - lower_key = upper_key.lower()
-
-
 - for character in content:
 -     if character.isupper():
 -         print(ascii_uppercase[upper_key.index(character)],end = "")
