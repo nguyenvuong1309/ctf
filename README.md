@@ -21,7 +21,7 @@ Cách giải:
 
 #Web
 ## portwSwigger
-- SQL Injection - Lab #9 SQL injection attack, listing the database contents on non Oracle databases
+### SQL Injection - Lab #9 SQL injection attack, listing the database contents on non Oracle databases
 - https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle
 1. Xác định số cột của database: ' order by 1--
 - https://0a2200c8030727a2c633e1d0005c006d.web-security-academy.net/filter?category=Accessories%27%20order%20by%201--
