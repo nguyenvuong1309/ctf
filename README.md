@@ -19,7 +19,7 @@ Cách giải:
 -     else: 
 -         print(character,end = "")
 
-# Web
+# Web   
 ## portwSwigger
 ### SQL Injection - Lab #9 SQL injection attack, listing the database contents on non Oracle databases
 - https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle
@@ -103,3 +103,27 @@ Cách giải:
 -    else: 
 -        print("Did not find a users table.")
 
+## Google Ctf
+### Vienna - Chemical plant 
+- https://capturetheflag.withgoogle.com/beginners-quest
+- Hàm array.from trong js có tác dụng biến đổi string thành mảng của các kí tự.
+- Hàm array.map() có tác dụng biến đổi các phần tử của mảng.
+- vd: array.map(x => x * x): bình phương tất cả các phần tử của mảng.
+- p = [0] * 12
+- offset = "0xcafe"
+- p[0] =  52037
+- p[6] = 52081
+- p[5] = 52063 
+- p[1] = 52077 
+- p[9] = 52077 
+- p[10] = 52080 
+- p[4] = 52046 
+- p[3] = 52066 
+- p[8] = 52085 
+- p[7] = 52081 
+- p[2] = 52077 
+- p[11] = 52066 
+- password = []
+- for x in p: 
+-    password.append(chr(x - int(offset,16)))
+- print("".join(password))
