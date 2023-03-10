@@ -104,7 +104,7 @@ Cách giải:
 -        print("Did not find a users table.")
 
 ## Google Ctf
-### Vienna - Chemical plant 
+### 1. Vienna - Chemical plant 
 - https://capturetheflag.withgoogle.com/beginners-quest
 - Hàm array.from trong js có tác dụng biến đổi string thành mảng của các kí tự.
 - Hàm array.map() có tác dụng biến đổi các phần tử của mảng.
@@ -127,3 +127,35 @@ Cách giải:
 - for x in p: 
 -    password.append(chr(x - int(offset,16)))
 - print("".join(password))
+
+### 2. Prague - Apartment
+- Sử dụng các cổng logic.
+### 3. Prague - Streets
+- var carArray = scanArray;
+- var max = 0;
+- for(var i = 1;i < carArray.length;i++){
+-      if(max < carArray[i]){
+-          max = carArray[i];
+-      }
+- }
+- var leftSide = carArray.slice(0,7);
+- var rightSide = carArray.slice(10,17);
+- var left = 0;
+- var right = 0;
+- for(var i = 0;i<leftSide.length;i++){
+-       if(leftSide[i] == max){
+-            left+=1;
+-       }
+- }
+- for(var i = 0;i<rightSide.length;i++){
+-       if(rightSide[i] == max){
+-            right+=1;
+-       }
+- }
+- if( left > 0){
+-        return -1;
+- }
+- if(right > 0){
+-       return 1;
+- }
+- return 0;
