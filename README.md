@@ -131,7 +131,8 @@ Cách giải:
 ### 2. Prague - Apartment
 - Sử dụng các cổng logic.
 ### 3. Prague - Streets
-- var carArray = scanArray;
+
+`- var carArray = scanArray;
 - var max = 0;
 - for(var i = 1;i < carArray.length;i++){
 -      if(max < carArray[i]){
@@ -158,4 +159,4 @@ Cách giải:
 - if(right > 0){
 -       return 1;
 - }
-- return 0;
+- return 0;`
