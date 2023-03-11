@@ -131,33 +131,34 @@ Cách giải:
 ### 2. Prague - Apartment
 - Sử dụng các cổng logic.
 ### 3. Prague - Streets
-
-- var carArray = scanArray;
-- var max = 0;
-- for(var i = 1;i < carArray.length;i++){
--      if(max < carArray[i]){
--          max = carArray[i];
--      }
-- }
-- var leftSide = carArray.slice(0,7);
-- var rightSide = carArray.slice(10,17);
-- var left = 0;
-- var right = 0;
-- for(var i = 0;i<leftSide.length;i++){
--       if(leftSide[i] == max){
--            left+=1;
--       }
-- }
-- for(var i = 0;i<rightSide.length;i++){
--       if(rightSide[i] == max){
--            right+=1;
--       }
-- }
-- if( left > 0){
--        return -1;
-- }
-- if(right > 0){
--       return 1;
-- }
-- return 0;
+```
+var carArray = scanArray;
+var max = 0;
+for(var i = 1;i < carArray.length;i++){
+     if(max < carArray[i]){
+         max = carArray[i];
+     }
+}
+var leftSide = carArray.slice(0,7);
+var rightSide = carArray.slice(10,17);
+var left = 0;
+var right = 0;
+for(var i = 0;i<leftSide.length;i++){
+      if(leftSide[i] == max){
+           left+=1;
+      }
+}
+for(var i = 0;i<rightSide.length;i++){
+      if(rightSide[i] == max){
+           right+=1;
+      }
+}
+if( left > 0){
+       return -1;
+}
+if(right > 0){
+      return 1;
+}
+return 0;
+```
 
