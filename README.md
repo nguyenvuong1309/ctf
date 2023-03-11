@@ -162,4 +162,22 @@ if(right > 0){
 }
 return 0;
 ```
+### 5. Istanbul - Bazaar
 
+- '\n'.join(arr)   có tác dụng kết hợp các phần tử của mảng lại và viết theo dòng, do có \n.  
+- random.getrandbits(k). Returns a non-negative Python integer with k random bits. This method is supplied with the `MersenneTwister` generator
+- MersenneTwister. `https://github.com/eboda/mersenne-twister-recover`
+
+```
+from MTRecover import MT19937Recover
+from robo import arr
+mtr = MT19937Recover()
+r2 = mtr.go(arr)
+def encodeSecret(s):
+    key = [r2.getrandbits(8) for i in range(len(s))]
+    return bytes([a^b for a,b in zip(key,s)])
+with open("secret.enc","rb") as f: 
+    s = f.read()
+print(encodeSecret(s))
+
+```
