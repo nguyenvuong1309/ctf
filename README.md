@@ -162,6 +162,23 @@ if(right > 0){
 }
 return 0;
 ```
+
+### 4. Secret Location - Base
+- gpio_set_mask(67) : có tác dụng set các bit lên 1. sử dụng &
+- gpio_clr_mask(0): có các dụng loại tất cả các bit về mask 0. sử dụng | ~
+
+```
+gpio = 0
+def gpio_clr_mask(m):
+    global gpio
+    gpio &= ~m
+def gpio_set_mask(m):
+    global gpio 
+    gpio |= m
+def sleep_us(_):
+    print(chr(gpio),end = "") 
+```
+
 ### 5. Istanbul - Bazaar
 
 - '\n'.join(arr)   có tác dụng kết hợp các phần tử của mảng lại và viết theo dòng, do có \n.  
@@ -181,3 +198,72 @@ with open("secret.enc","rb") as f:
 print(encodeSecret(s))
 
 ```
+### 7. Buenos Aires - Conference
+- When encrypting with low encryption exponents (e.g., e = 3) and small values of the m (i.e., m < n1/e), the result of me is strictly less than the modulus n. In this case, ciphertexts can be decrypted easily by taking the eth root of the ciphertext over the integers. `https://en.wikipedia.org/wiki/RSA_(cryptosystem)`
+
+```
+def nth_root(x, n):
+    # Start with some reasonable bounds around the nth root.
+    upper_bound = 1
+    while upper_bound ** n <= x:
+        upper_bound *= 2
+    lower_bound = upper_bound // 2
+    # Keep searching for a better result as long as the bounds make sense.
+    while lower_bound < upper_bound:
+        mid = (lower_bound + upper_bound) // 2
+        mid_nth = mid ** n
+        if lower_bound < mid and mid_nth < x:
+            lower_bound = mid
+        elif upper_bound > mid and mid_nth > x:
+            upper_bound = mid
+        else:
+            # Found perfect nth root.
+            return mid
+    return mid + 1
+
+for k in range(5000):
+    r = nth_root(c + k * n,3)
+    l = hex(r)[2:] #     bỏ hai kí tự 0x ở đầu đi 
+    if len(l) % 2 == 1:
+        l = "0" + l 
+    m = b''.fromhex(l)   #    b''.fromhex(l) = bytes.fromhex(l)
+    if b'CTF' in m: 
+        print(m)
+        break
+```
+
+
+## Hackthissite 
+- `https://www.hackthissite.org/`
+### 1. Basic1
+- Vô phần sourcecode tìm mật khẩu.
+### 2. Basic2
+- Gửi mật khẩu rỗng.
+### 3. basic3
+- Vô phần sourcecode và thấy phần password.php, chuyển hướng đến trang đấy.
+### 4. basic4
+- Vô phần sourcecode và thấy đoạn form dùng để gửi mật khẩu qua email, thay đổi email thành email của mình và thay đổi phần action thành link của trang web.
+```
+<form action="https://www.hackthissite.org/missions/basic/4/level4.php" method="post">
+    <input type="hidden" name="to" value="2152809@gm.uit.edu.vn" /><input type="submit" value="Send password to Sam" />
+</form>
+
+```
+### 5. basic5 
+- inspect code và thực hiện thay đổi email ngay ở đó.
+93af03f
+### 6. basic6
+```
+s = '94ci48l:'
+pas = ""
+for i,c in enumerate(s):
+    pas += chr(ord(str(c)) - int(i))
+print(pas)
+```
+### 7. basic7
+- Cách sử dụng hai câu lệnh linux cùng lúc trên cùng một dòng (câu lệnh thứ nhất; câu lệnh thứ hai. ví du: 2021;ls)(os command injection)
+- Sử dụng os command injection `;ls`, nhìn thấy được các thư mục, truy cập vào thư mục cuối cùng sẽ được mật khẩu.
+### 8. basic8
+- server side include. `<!--#exec cmd="ls"-->` `<!--#exec cmd="ls .."-->`
+### 9. basic9 
+- `<!--#exec cmd="ls ../../9"-->`
