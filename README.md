@@ -266,4 +266,10 @@ print(pas)
 ### 8. basic8
 - server side include. `<!--#exec cmd="ls"-->` `<!--#exec cmd="ls .."-->`
 ### 9. basic9 
-- `<!--#exec cmd="ls ../../9"-->`
+- thực hiện ở basic8. `<!--#exec cmd="ls ../../9"-->`
+### 10. basic10
+- Thay đổi giá trị của cookies từ no thành yes.
+### 1. Application challenge 1
+- Chuyển file app1win.exe về dạng string `strings app1win.exe > 1.txt`
+- Sau khi nhập mật khẩu sai thì sẽ được một dòng chữ, tìm dòng chữ đó trong file 1.txt thì sẽ thấy `0Contratulations! The password to this level is '`. Nhập lần lượt các mật khẩu vào và nhận được mật khẩu cuối cùng là `smashthestate`
+
