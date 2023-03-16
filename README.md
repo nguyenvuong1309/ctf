@@ -273,3 +273,31 @@ print(pas)
 - Chuyển file app1win.exe về dạng string `strings app1win.exe > 1.txt`
 - Sau khi nhập mật khẩu sai thì sẽ được một dòng chữ, tìm dòng chữ đó trong file 1.txt thì sẽ thấy `0Contratulations! The password to this level is '`. Nhập lần lượt các mật khẩu vào và nhận được mật khẩu cuối cùng là `smashthestate`
 
+### 1. javascript 1
+- Vào phần source code và thấy có hàm check() javascript dùng để kiểm tra mật khẩu.
+### 2. javascript 2
+- disable javascript.
+### 3. javascript 3
+- Tính toán.
+### 4. javascript 4
+- Thực hiện alert(""+RawrRawr+"") trên browser để xem giá trị của mật khẩu.
+### 5. javascript 5
+- unescape trong js có tác dụng chuyển hex sang string.
+### 7. javascript 7
+- Chuyển từ hex sang string.
+```
+array = [chr(c) for c in x]
+print("".join(array))
+```
+### 1. Over and over.
+- buffer overflow, nhập vào chuỗi có 201 ký tự sẽ làm bộ nhớ bị tràn.
+### 2. Extension blocking.
+- CSRF, `../../index`
+### 6. Sucky sysadmin. 
+- `http://moo.com/moo.php?pass=TRUE`
+### 7. extended basic 7.
+- `<form name="grezvahfvfnjuvavatovgpu" action="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">`
+### 8. extended basic 8.
+- `if ($User eq 'BillGates')`
+### 9. extended basic 9.
+- `open(STARTREKLOG, '>>/var/log/startrek');`
