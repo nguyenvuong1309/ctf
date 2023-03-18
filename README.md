@@ -301,3 +301,47 @@ print("".join(array))
 - `if ($User eq 'BillGates')`
 ### 9. extended basic 9.
 - `open(STARTREKLOG, '>>/var/log/startrek');`
+### 10. extended basic 10.
+- `"=="" set passwordvalue=1065435274 && goto :end whatever`
+### 12.extended basic 12.
+- `moo.com/any.php?userpass=value&password=value`
+### 13. extended basic 13.
+- `vrfy.php?name=&email=`
+### 14. extended basic 14.
+- `private synchronized void incrementLeetness() {`
+
+### 2. realistic 2.
+- sql injection. `admin' or 1=1--`
+### 3. realistic 3.
+- Trong phần sourcecode của trang web có dòng chữ. Chuyển sang oldindex.html, vào phần submit poem, submit với nội dung là sourcecode của trang web và tên là `../index.html`
+### 4, realistic 4.
+- sql injection. `union all select null,*,null,null from email;`
+### 5.realistic 5.
+- Đầu tiên vào file robots.txt, sau đó vào thư mực secret và có file admin.bak.php và có một dòng hash được sử dụng thuật toán hash MD4, giải mã hash đó bằng cách sử dụng câu lệnh `sudo john --format=Raw-MD4 hash.txt` trong đó hash.txt chứa mã hash.
+### 6. realistic 6.
+- Sử dụng thuật toán XEcryption algorithm, sau đó gửi vô phần thông tin cá nhân của bản thân, nhấn vào username và tiến hành gửi mail.
+### 7. realistic 7.
+
+## RUSH CTF.
+- `https://rush.ctf.cafe/challenges`
+### missing y00u.
+```
+flag = []
+for i in range(2,len(s),4):
+    flag.append(chr(int(s[i:i+2],16)))
+print("".join(flag))
+```
+
+## Security valley.
+- `https://ctf.securityvalley.org/`
+### Simple ELF
+- `strings crackme-01 | grep SecVal`
+### Capture message.
+- Rotation.
+### shell.
+- TCP stream.
+### the data.
+- file-> export object -> preview.
+
+### overthewire
+## bandit1.
