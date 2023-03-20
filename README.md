@@ -344,4 +344,7 @@ print("".join(flag))
 - file-> export object -> preview.
 
 ### overthewire
-## bandit1.
+## 1.bandit1.
+- `ssh bandit0@bandit.labs.overthewire.org -p 2220`
+## 2. bandit2.
+- pwd->ls->cat readme `NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL`
