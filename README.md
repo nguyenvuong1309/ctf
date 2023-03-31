@@ -1,6 +1,6 @@
 # Cryptography  
 ## picoCtf
-substitution0 https://play.picoctf.org/practice/challenge/307?page=1&search=substitu
+### substitution0 https://play.picoctf.org/practice/challenge/307?page=1&search=substitu
 Cách giải: 
 - Đây là mật mã thay thế.
 - 26 kí tự đầu tiên sẽ là khóa.
@@ -19,8 +19,98 @@ for character in content:
     else: 
         print(character,end = "")
 ```
+### basic-mod2
+```
+import string
+flag = []
+with open('message.txt','r') as file:
+    content = file.read()
+    number = [int(val) for val in content.split()]
+    module = [pow(i,-1,41) for i in number]  pow dùng để tìm nghịch đảo.
+    for i in module:
+        if i in range(1,27):
+            flag.append(string.ascii_uppercase[i-1])
+        elif i in range(27,37):
+            flag.append(string.digits[i-27])
+        else: 
+            flag.append("_")
+print("picoCTF{%s}" %"".join(flag))
+```
+
+### basic-mod1 
+
+```
+import string
+flag = []
+with open('message.txt','r') as file:
+    content = file.read()
+    number = [int(val) for val in content.split()]
+    module = [i%37 for i in number]
+    for i in module:
+        if i in range(0,26):
+            flag.append(string.ascii_uppercase[i])
+        elif i in range(26,36):
+            flag.append(string.digits[i-26])
+        else: 
+            flag.append("_")
+print("picoCTF{%s}" %"".join(flag))
+```
+### rail-fence
+- `https://www.geeksforgeeks.org/rail-fence-cipher-encryption-decryption/`
+```
+def decryptRailFence(cipher, key):
+	rail = [['\n' for i in range(len(cipher))]
+				for j in range(key)]
+	dir_down = None
+	row, col = 0, 0
+	for i in range(len(cipher)):
+		if row == 0:
+			dir_down = True
+		if row == key - 1:
+			dir_down = False
+		rail[row][col] = '*'
+		col += 1
+		if dir_down:
+			row += 1
+		else:
+			row -= 1
+	index = 0
+	for i in range(key):
+		for j in range(len(cipher)):
+			if ((rail[i][j] == '*') and
+			(index < len(cipher))):
+				rail[i][j] = cipher[index]
+				index += 1
+	result = []
+	row, col = 0, 0
+	for i in range(len(cipher)):
+		if row == 0:
+			dir_down = True
+		if row == key-1:
+			dir_down = False
+		if (rail[row][col] != '*'):
+			result.append(rail[row][col])
+			col += 1
+		if dir_down:
+			row += 1
+		else:
+			row -= 1
+	return("".join(result))
+if __name__ == "__main__":
+	with open("message.txt","r") as file:
+		content = file.read()
+	flag = (decryptRailFence(content, 4))
+	print("picoCTF{%s}" % flag[13:])
+```
 # Web   
 ## portwSwigger
+### JWT.
+#### Lab: JWT authentication bypass via flawed signature verification
+- lỗi ở đây là ở phần signature content. Chuyển thuật toán ở phần header thành none sau đó xóa phần content signature đi nhưng vẫn phải dữ lại dấu chấm.
+#### Lab: Lab: JWT authentication bypass via unverified signature
+- chỉ cần thay đổi username thành administrator ở phần jwt là có thể đăng nhập vào như admin.
+#### Lab: Lab: JWT authentication bypass via weak signing key
+- thay đổi serect key của jwt bằng `serect1`
 ### SQL Injection - Lab #9 SQL injection attack, listing the database contents on non Oracle databases
 - https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-non-oracle
 1. Xác định số cột của database: ' order by 1--
@@ -348,3 +438,5 @@ print("".join(flag))
 - `ssh bandit0@bandit.labs.overthewire.org -p 2220`
 ## 2. bandit2.
 - pwd->ls->cat readme `NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL`
+## 3. bandit3.
+- 
