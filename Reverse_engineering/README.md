@@ -15,7 +15,9 @@
 ```
 INSTRUCTION IN IDA
 - x64
+```
 ![2](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/crackme01.png)
+```
 - endbr64 : This instruction is an "End Branch 64" (endbr64) instruction, which is a form of an instruction pointer integrity check used for control-flow integrity (CFI) enforcement.
 - push rbx : This instruction pushes the value of the rbx register onto the stack. The rbx register is a general-purpose register in x86-64 architecture.
 - cmp edi, 2 : This instruction performs a comparison between the value of the edi register (which likely contains a function argument) and the value 2. The result of the comparison will be used in the next instruction to determine whether to jump to a different location in the code.
