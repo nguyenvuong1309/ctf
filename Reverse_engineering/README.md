@@ -61,4 +61,24 @@ INSTRUCTION IN IDA
 ```
 - __readfsqword : Read memory from a location specified by an offset relative to the beginning of the FS segment.
 - strcspn : The C library function size_t strcspn(const char *str1, const char *str2) calculates the length of the initial segment of str1, which consists entirely of characters not in str2.
-- open image file in hex : `hexdump -C image.jpg`.
+- Open image file in hex : `hexdump -C image.jpg`.
+- Get info of break point in gdb: `info break`
+- Delete break point in gdb : `del 3`
+- Show assembly line in gdb : `show disassemble-next-line` -> `set disassemble-next-line on` -> `si`.
+- Show assembly line in gdb : `display/i $pc`. 
+- Show assembly line in gdb : `layout asm`. 
+```
+Hex -> decimal : int("0x12",16)
+Hex -> binary : bin(int("0x12",16))[:2]
+Binary -> decimal : int("100",2)
+Binary -> hex : hex(int("100",2))
+Decimal -> binary : bin(10)
+Decimal -> hex : hexx(10)
+```
+
+- Display all registers in gdb: `info registers`.
+- Print value of a register : `p $eax`.
+- Print address of register : `info register ecx`.
+- Print address of register : `x/x $eax`.   x/x
+- Step one instruction in gdb : `stepi`.
+- This is a dynamically-linked, position-independent (PIE) binary. `set stop-on-solib-events 1` [how-to-set-earliest-possible-breakpoint](https://stackoverflow.com/questions/22488499/how-to-set-earliest-possible-breakpoint)
