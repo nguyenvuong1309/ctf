@@ -32,7 +32,9 @@ INSTRUCTION IN IDA
 - movsx   ebx, bl : Move the signed value of bl into ebx (sign extension).
 - test    ebx, ebx : Test whether ebx is zero (i.e. the strings matched).
 - jnz      short loc_11C7 : Jump to the label loc_11C7 if the zero flag is set (i.e. the strings matched).
-![3](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/register.png)
+```
+![3](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/crackme02.png)
+```
 - mov     rsi, [rsi+8]: 
  + The instruction "mov rsi, [rsi+8]" is an x86-64 assembly language instruction that loads a 64-bit value from memory into the RSI register.
  + The memory location from which the value is loaded is calculated by adding 8 to the current contents of the RSI register, and then treating the resulting value as a memory address.
@@ -51,3 +53,12 @@ INSTRUCTION IN IDA
  + The AL register contains the lower 8 bits of the EAX register, which may represent a signed or unsigned value. The "movsx" instruction assumes that the value in AL is signed, and sign-extends it to 32 bits by copying the sign bit (the most significant bit) of AL into the upper 24 bits of EAX.
  + In summary, the "movsx eax, al" instruction moves a signed byte value from the AL register into the EAX register, sign-extending it to 32 bits. This can be useful when you need to convert a signed byte value into a 32-bit signed integer.
 ```
+![3](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/crackme03.png)
+```
+- rdi: This register is typically used to pass the first function argument. It is also used to store the return value of a function that returns a single value in the rax register. For example, in the printf function, the format string is typically passed in rdi.
+- rsi: This register is typically used to pass the second function argument. For example, in the printf function, the first data argument is typically passed in rsi.
+- rdx: This register is typically used to pass the third function argument. For example, in the printf function, the second data argument is typically passed in rdx.
+```
+- __readfsqword : Read memory from a location specified by an offset relative to the beginning of the FS segment.
+- strcspn : The C library function size_t strcspn(const char *str1, const char *str2) calculates the length of the initial segment of str1, which consists entirely of characters not in str2.
+- open image file in hex : `hexdump -C image.jpg`.
