@@ -82,3 +82,143 @@ Decimal -> hex : hexx(10)
 - Print address of register : `x/x $eax`.   x/x
 - Step one instruction in gdb : `stepi`.
 - This is a dynamically-linked, position-independent (PIE) binary. `set stop-on-solib-events 1` [how-to-set-earliest-possible-breakpoint](https://stackoverflow.com/questions/22488499/how-to-set-earliest-possible-breakpoint)
+- radare2 : `r2 -d ./layers`
+- V : switch to hex view.(press p to switch to anather view)
+- v : switch to text view.
+- f8 : jump into.
+- f7 : move out.
+ 
+# picoctf
+- [bbbbloat](https://play.picoctf.org/practice/challenge/255?page=1&search=bb)
+![1](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/bbbbloat1.png)
+![1](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/bbbbloat2.png)
+![1](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/bbbbloat3.png)
+
+- push    rbp             ; Push the current base pointer onto the stack
+- mov     rbp, rsp        ; Set the base pointer to the current stack pointer
+- sub     rsp, 50h        ; Allocate 80 bytes of space on the stack for local variables
+- mov     [rbp+var_44], edi  ; Store the value of the EDI register in the local variable at RBP-0x44
+- mov     [rbp+var_50], rsi  ; Store the value of the RSI register in the local variable at RBP-0x50
+- mov     rax, fs:28h     ; Load the value of the FS segment register plus 0x28 into the RAX register
+- mov     [rbp+var_8], rax   ; Store the value of RAX in the local variable at RBP-0x8
+- xor     eax, eax        ; Set the EAX register to zero
+- mov     rax, 4C75257240343A41h ; Load a 64-bit constant into RAX
+- mov     rdx, 3062396630664634h ; Load another 64-bit constant into RDX
+- mov     [rbp+var_30], rax   ; Store the value of RAX in the local variable at RBP-0x30
+- mov     [rbp+var_28], rdx   ; Store the value of RDX in the local variable at RBP-0x28
+- mov     rax, 65623066635F3D33h ; Load a 64-bit constant into RAX
+- mov     rdx, 4E326560623535h   ; Load another 64-bit constant into RDX
+- mov     [rbp+var_20], rax   ; Store the value of RAX in the local variable at RBP-0x20
+- mov     [rbp+var_18], rdx   ; Store the value of RDX in the local variable at RBP-0x18
+- mov     [rbp+var_3C], 3078h ; Store the value 0x3078 in the local variable at RBP-0x3C
+- add     [rbp+var_3C], 13C29Eh ; Add 0x13C29E to the value in the local variable at RBP-0x3C
+- sub     [rbp+var_3C], 30A8h ; Subtract 0x30A8 from the value in the local variable at RBP-0x3C
+- shl     [rbp+var_3C], 1   ; Shift the value in the local variable at RBP-0x3C left by one bit
+- mov     eax, [rbp+var_3C] ; Move the value of the local variable at RBP-0x3C into the EAX register
+- movsxd rdx, eax: Sign-extend eax to 64 bits and store the result in rdx.
+- imul rdx, 55555556h: Multiply the value in rdx by 0x55555556 and store the result in rdx. This multiplication is equivalent to dividing by 3, using some bit tricks.
+- shr rdx, 20h: Shift the value in rdx to the right by 32 - 20 = 12 bits.
+- sar eax, 1Fh: Shift the value in eax to the right by 31 bits, filling the leftmost bits with the sign bit (i.e., 0 for positive values, 1 for negative values).
+- mov ecx, edx: Move the value in edx to ecx.
+- sub ecx, eax: Subtract the value in eax from ecx and store the result in eax.
+- mov eax, ecx: Move the value in ecx to eax. At this point, eax contains a random-looking integer value that depends on the initial value of eax.
+- mov [rbp+var_3C], eax: Store the value in eax in the local variable at [rbp+var_3C].
+- mov [rbp+var_3C], 3078h: Set the value of the local variable at [rbp+var_3C] to 0x3078.
+- add [rbp+var_3C], 13C29Eh: Add 0x13C29E to the value of the local variable at [rbp+var_3C].
+- sub [rbp+var_3C], 30A8h: Subtract 0x30A8 from the value of the local variable at [rbp+var_3C].
+- shl [rbp+var_3C], 1: Shift the value of the local variable at [rbp+var_3C] to the left by 1 bit.
+- mov eax, [rbp+var_3C]: Move the value of the local variable at [rbp+var_3C] to eax.
+- movsxd rdx, eax: Sign-extend eax to 64 bits and store the result in rdx.
+- imul rdx, 55555556h: Multiply the value in rdx by 0x55555556 and store the result in rdx. This multiplication is equivalent to dividing by 3, using some bit tricks.
+- shr rdx, 20h: Shift the value in rdx to the right by 32 - 20 = 12 bits.
+- sar eax, 1Fh: Shift the value in eax to the right by 31 bits, filling the leftmost bits with the sign bit (i.e., 0 for positive values, 1 for negative values).
+- mov ecx, edx: Move the value in edx to ecx.
+- sub ecx, eax: Subtract the value in eax from ecx and store the result in eax.
+- mov eax, ecx: Move the value in ecx.
+- lea     rdi, aD         ; Load the format string "%d" into the RDI register
+- mov     eax, 0         ; Move the value 0 into the EAX register
+- call    ___isoc99_scanf ; Call the scanf function to read integer input from the user
+
+- mov     [rbp+var_3C], 3078h  ; Move the value 0x3078 (12312 in decimal) into the variable at RBP - 0x3C
+- add     [rbp+var_3C], 13C29Eh ; Add 0x13C29E (1256318 in decimal) to the variable at RBP - 0x3C
+- sub     [rbp+var_3C], 30A8h   ; Subtract 0x30A8 (12456 in decimal) from the variable at RBP - 0x3C
+- shl     [rbp+var_3C], 1      ; Shift the variable at RBP - 0x3C left by 1 bit
+- mov     eax, [rbp+var_3C]    ; Move the value of the variable at RBP - 0x3C into the EAX register
+- movsxd  rdx, eax             ; Move the signed doubleword value of EAX into RDX
+- imul    rdx, 55555556h       ; Multiply RDX by 0x55555556 (1431655766 in decimal)
+- shr     rdx, 20h             ; Shift the value of RDX right by 32 bits
+- sar     eax, 1Fh             ; Shift the value of EAX right by 31 bits, filling the leftmost bits with 1's
+- mov     esi, edx             ; Move the value of RDX into the ESI register
+- sub     esi, eax             ; Subtract the value of EAX from ESI
+- mov     eax, esi             ; Move the value of ESI into EAX
+- mov     [rbp+var_3C], eax  ; Move the value of EAX register into the memory location at RBP-0x3C
+- mov     [rbp+var_3C], 3078h  ; Move the value 0x3078 into the memory location at RBP-0x3C
+- add     [rbp+var_3C], 13C29Eh  ; Add 0x13C29E to the value at the memory location RBP-0x3C
+- sub     [rbp+var_3C], 30A8h  ; Subtract 0x30A8 from the value at the memory location RBP-0x3C
+- shl     [rbp+var_3C], 1  ; Bitwise left shift the value at the memory location RBP-0x3C by 1 bit
+- mov     eax, [rbp+var_3C]  ; Move the value at the memory location RBP-0x3C into the EAX register
+- movsxd  rdx, eax  ; Sign-extend EAX into RDX
+- imul    rdx, 55555556h  ; Multiply RDX by 0x55555556
+- shr     rdx, 20h  ; Bitwise right shift RDX by 0x20 bits
+- sar     eax, 1Fh  ; Arithmetic right shift EAX by 0x1F bits
+- mov     edi, edx  ; Move the value in RDX into the EDI register
+- sub     edi, eax  ; Subtract the value in EAX from the value in EDI and store the result in EDI
+- mov     eax, edi  ; Move the value in EDI into the EAX register
+- mov     [rbp+var_3C], eax  ; Move the value in EAX into the memory location RBP-0x3C
+- mov     eax, [rbp+var_40]  ; Move the value at the memory location RBP-0x40 into the EAX register
+- cmp     eax, 86187h  ; Compare the value in EAX with the value 0x86187
+- jnz     loc_1583  ; Jump to the location labeled "loc_1583" if the values are not equal
+
+![1](https://github.com/SieuPhongDo/ctf/blob/main/Reverse_engineering/bbbbloat4.png)
+
+- mov     [rbp+var_3C], 3078h  ; move the value 0x3078 into the memory location [rbp-0x3C]
+- add     [rbp+var_3C], 13C29Eh ; add the value 0x13C29E to the memory location [rbp-0x3C]
+- sub     [rbp+var_3C], 30A8h   ; subtract the value 0x30A8 from the memory location [rbp-0x3C]
+- shl     [rbp+var_3C], 1      ; shift the value in [rbp-0x3C] left by one bit
+
+- mov     eax, [rbp+var_3C]    ; move the value in [rbp-0x3C] into the eax register
+- movsxd  rdx, eax             ; sign-extend the value in eax into the rdx register
+- imul    rdx, 55555556h       ; multiply the value in rdx by 0x55555556
+- shr     rdx, 20h             ; shift the value in rdx right by 0x20 bits
+- sar     eax, 1Fh             ; shift the value in eax right by 0x1F bits with sign extension
+- mov     ecx, edx             ; move the value in edx into the ecx register
+- sub     ecx, eax             ; subtract the value in eax from the value in ecx and store the result in ecx
+- mov     eax, ecx             ; move the value in ecx into the eax register
+- mov     [rbp+var_3C], eax    ; move the value in eax into the memory location [rbp-0x3C]
+ 
+- mov     [rbp+var_3C], 3078h  ; move the value 0x3078 into the memory location [rbp-0x3C]
+- add     [rbp+var_3C], 13C29Eh ; add the value 0x13C29E to the memory location [rbp-0x3C]
+- sub     [rbp+var_3C], 30A8h   ; subtract the value 0x30A8 from the memory location [rbp-0x3C]
+- shl     [rbp+var_3C], 1      ; shift the value in [rbp-0x3C] left by one bit
+ 
+- mov     eax, [rbp+var_3C] ; move the value at [rbp-0x3C] into eax
+- movsxd  rdx, eax         ; sign-extend the value in eax into rdx
+- imul    rdx, 55555556h   ; multiply the value in rdx by 0x55555556
+- shr     rdx, 20h         ; shift the value in rdx right by 0x20 bits
+- sar     eax, 1Fh         ; shift the value in eax right by 0x1F bits with sign extension
+- mov     esi, edx         ; move the value in edx into esi
+- sub     esi, eax         ; subtract the value in eax from the value in esi and store the result in esi
+- mov     eax, esi         ; move the value in esi into eax
+- mov     [rbp+var_3C], eax ; move the value in eax into [rbp-0x3C]
+ 
+- lea     rax, [rbp+var_30] ; compute the address of [rbp-0x30] and store it in rax
+- mov     rsi, rax         ; move the value in rax into rsi
+- mov     edi, 0           ; move the value 0 into edi
+- call    near ptr sub_1248+1 ; call the function sub_1248+1 with arguments rdi=0 and rsi=rbp-0x30, and store the return value in rax
+- mov     [rbp+s], rax     ; move the return value from rax into the memory location [rbp-s]
+ 
+- mov     rdx, cs:stdout   ; move the value of stdout into rdx
+- mov     rax, [rbp+s]     ; move the value at [rbp-s] into rax
+- mov     rsi, rdx         ; move the value in rdx into rsi (stream argument)
+- mov     rdi, rax         ; move the value in rax into rdi (string argument)
+- call    _fputs           ; call the fputs function with arguments rdi=string and rsi=stream
+ 
+- mov     edi, 0Ah         ; move the value of '\n' into edi (newline character)
+- call    _putchar         ; call the putchar function with argument edi='\n'
+ 
+- mov     rax, [rbp+s]     ; move the value at [rbp-s] into rax
+- mov     rdi, rax         ; move the value in rax into rdi (pointer argument for free)
+- call    _free            ; call the free function with argument rdi=pointer
+ 
+- jmp     short loc_158F   ; jump to the instruction at label loc_158F
+ 
